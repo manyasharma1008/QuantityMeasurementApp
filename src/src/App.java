@@ -1,11 +1,10 @@
-
 public class App {
 
     enum LengthUnit {
         FEET(1.0),
         INCH(1.0 / 12.0),
         YARD(3.0),
-        CM(0.393701 / 12.0);
+        CM(0.0328084); // 1 cm in feet
 
         private final double toFeetFactor;
 
@@ -21,6 +20,7 @@ public class App {
     static class Length {
         private final double value;
         private final LengthUnit unit;
+        private static final double EPSILON = 1e-6;
 
         public Length(double value, LengthUnit unit) {
             if (unit == null) {
@@ -37,15 +37,21 @@ public class App {
         @Override
         public boolean equals(Object obj) {
             if (this == obj) return true;
-            if (obj == null) return false;
-            if (this.getClass() != obj.getClass()) return false;
+            if (obj == null || this.getClass() != obj.getClass()) return false;
 
             Length other = (Length) obj;
-            return Double.compare(this.toFeet(), other.toFeet()) == 0;
+            return Math.abs(this.toFeet() - other.toFeet()) < EPSILON;
+        }
+
+        @Override
+        public int hashCode() {
+            long temp = Double.doubleToLongBits(toFeet());
+            return (int) (temp ^ (temp >>> 32));
         }
     }
 
     public static boolean compare(Length l1, Length l2) {
+        if (l1 == null || l2 == null) return false;
         return l1.equals(l2);
     }
 
