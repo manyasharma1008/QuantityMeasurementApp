@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Quantity Measurement App/Quantity Measurement App.iml" filepath="$PROJECT_DIR$/Quantity Measurement App/Quantity Measurement App.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/QuantityMeasurementApp.iml" filepath="$PROJECT_DIR$/.idea/QuantityMeasurementApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/src.iml" filepath="$PROJECT_DIR$/src/src.iml" />
     </modules>
